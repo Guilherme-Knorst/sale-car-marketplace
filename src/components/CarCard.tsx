@@ -1,22 +1,18 @@
 import Link from 'next/link';
-import Image from 'next/image';
+import ImageCarousel from './ImageCarousel';
+import Button from './Button';
 
 export default function CarCard({ car }: { car: any }) {
   return (
-    <Link href={`/cars/${car._id}`}>
-      <div className="border rounded p-3 hover:shadow">
-        {/* <img src={car.images?.[0]} alt={car.model} className="w-full h-40 object-cover rounded" /> */}
-				<Image
-					src={car.images?.[0]}
-					alt={car.carModel}
-					width={400}
-					height={300}
-					className="w-full h-40 object-cover rounded"
-				/>
-        <h2 className="text-lg font-semibold mt-2">{car.brand} {car.carModel}</h2>
-        <p>Ano: {car.year}</p>
-        <p>R$ {car.price.toLocaleString('pt-BR')}</p>
-      </div>
+    <Link key={car._id} href={`/cars/${car._id}`} target='_blank' className="border border-secondary rounded-lg overflow-hidden shadow hover:shadow-lg transition-shadow bg-white" rel="noopener noreferrer">
+			<ImageCarousel images={car.images} noModal />
+			<div className="p-4">
+		    <h2 className="text-xl font-bold text-quinary">{car.brand} {car.carModel}</h2>
+		    <p className="text-gray-700">{car.year} • {car.mileage.toLocaleString()} km</p>
+		    <p className="text-primary text-lg font-semibold mt-1">
+		      R$ {car.price.toLocaleString('pt-BR')}
+		    </p>
+		  </div>
     </Link>
   );
 }

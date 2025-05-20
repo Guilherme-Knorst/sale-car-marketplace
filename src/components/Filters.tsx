@@ -8,43 +8,47 @@ export default function Filters() {
   const searchParams = useSearchParams();
 
   const [brand, setBrand] = useState(searchParams.get('brand') || '');
-  const [priceMin, setPriceMin] = useState(searchParams.get('price_min') || '');
-  const [priceMax, setPriceMax] = useState(searchParams.get('price_max') || '');
+  const [min, setMin] = useState(searchParams.get('price_min') || '');
+  const [max, setMax] = useState(searchParams.get('price_max') || '');
 
-  const applyFilters = () => {
+  const handleSubmit = () => {
     const params = new URLSearchParams();
 
     if (brand) params.set('brand', brand);
-    if (priceMin) params.set('price_min', priceMin);
-    if (priceMax) params.set('price_max', priceMax);
+    if (min) params.set('price_min', min);
+    if (max) params.set('price_max', max);
 
-    router.push(`/cars?${params.toString()}`);
+    router.push(`/?${params.toString()}`);
   };
 
   return (
-    <div className="flex gap-4 items-end flex-wrap">
+    <div className="bg-senary p-4 rounded-lg flex flex-wrap gap-4 items-end shadow-inner mb-8">
       <input
-        type="text"
         placeholder="Marca"
         value={brand}
-        onChange={e => setBrand(e.target.value)}
-        className="input"
+        onChange={(e) => setBrand(e.target.value)}
+        className="px-3 py-2 rounded border border-gray-300 w-full sm:w-40"
       />
       <input
-        type="number"
         placeholder="Preço mínimo"
-        value={priceMin}
-        onChange={e => setPriceMin(e.target.value)}
-        className="input"
+        type="number"
+        value={min}
+        onChange={(e) => setMin(e.target.value)}
+        className="px-3 py-2 rounded border border-gray-300 w-full sm:w-40"
       />
       <input
-        type="number"
         placeholder="Preço máximo"
-        value={priceMax}
-        onChange={e => setPriceMax(e.target.value)}
-        className="input"
+        type="number"
+        value={max}
+        onChange={(e) => setMax(e.target.value)}
+        className="px-3 py-2 rounded border border-gray-300 w-full sm:w-40"
       />
-      <button onClick={applyFilters} className="btn-primary">Filtrar</button>
+      <button
+        onClick={handleSubmit}
+        className="bg-primary text-white px-4 py-2 rounded hover:opacity-90"
+      >
+        Filtrar
+      </button>
     </div>
   );
 }
