@@ -3,7 +3,7 @@ import { connectToDatabase } from '@/lib/mongodb';
 import Car, { ICar } from '@/models/Car';
 import { notFound } from 'next/navigation';
 
-export default async function CarDetailPage({ params }: { params: { id: string } }) {
+export default async function CarDetailPage({params}: {params: Promise<{ id: string }>}) {
   await connectToDatabase();
 
 	const { id } = await params;

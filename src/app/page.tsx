@@ -13,7 +13,7 @@ interface SearchParams {
 export default async function HomePage({
   searchParams,
 }: {
-  searchParams: SearchParams;
+  searchParams: Promise<SearchParams>;
 }) {
   await connectToDatabase();
 
