@@ -1,44 +1,53 @@
 import { connectToDatabase } from '@/lib/mongodb';
-import Car from '@/models/Car';
-import Header from '@/components/Header';
+import Car, { ICar } from '@/models/Car';
 import Footer from '@/components/Footer';
 import Filters from '@/components/Filters';
 import CarCard from '@/components/CarCard';
 
-export default async function HomePage({ searchParams }: { searchParams: any }) {
+interface SearchParams {
+  brand?: string;
+  price_min?: string;
+  price_max?: string;
+}
+
+export default async function HomePage({
+  searchParams,
+}: {
+  searchParams: SearchParams;
+}) {
   await connectToDatabase();
 
-  const query: any = { active: true };
+  const query: Record<string, any> = { active: true };
 
-	const { brand, price_min, price_max } = await searchParams;
+  const { brand, price_min = 0, price_max = 9999999999 } = await searchParams;
 
-  if (brand) query.brand = brand;
-  if (price_min || price_max) {
-    query.price = {};
-    if (price_min) query.price.$gte = Number(price_min);
-    if (price_max) query.price.$lte = Number(price_max);
-  }
+	if (brand) {
+		query.brand = { $regex: new RegExp(brand, 'i') };
+	}
+	
+	query.price = {};
+	query.price.$gte = Number(price_min);
+	query.price.$lte = Number(price_max);
+  
 
-  const cars = await Car.find(query).sort({ createdAt: -1 });
+  const cars: ICar[] = await Car.find(query).sort({ createdAt: -1 });
 
   return (
-    <>
-      <Header />
+    <div className="flex flex-col gap-6 justify-between items-center h-screen">
+      <main className="mt-6 w-[90%] xl:w-[70%] 2xl:w-[50%]">
+        <h1 className="text-base font-extrabold text-secondary mb-6 bg-senary p-4 rounded-lg font-syntha">
+          Carros disponíveis
+        </h1>
 
-      <main className="w-[90%] xl:w-[70%] 2xl:w-[50%] m-auto pt-20">
-        <h1 className="text-base font-extrabold text-secondary mb-6 font-synth bg-senary p-4 rounded-lg">Carros disponíveis</h1>
+        <Filters />
 
-        <Filters/>
-
-        {/* Lista de carros */}
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {cars.map((car: any) => (
-						<CarCard key={car._id as string} car={car} />
+          {cars.map((car) => (
+            <CarCard key={car.id} car={car} />
           ))}
         </div>
       </main>
-
       <Footer />
-    </>
+    </div>
   );
 }

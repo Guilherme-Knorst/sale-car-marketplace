@@ -1,32 +1,29 @@
 @import "tailwindcss";
 @import 'keen-slider/keen-slider.min.css';
 
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @font-face {
-  font-family: 'Syntha';
+  font-family: syntha;
   src: url('/fonts/Syntha.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
-
-@theme inline {
+@theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-
   --color-primary: #fe933e;
 	--color-secondary: #379CC8;
 	--color-tertiary: #D91197;
 	--color-quaternary: #ED319D;
 	--color-quinary: #7B12B5;
 	--color-senary: #FEEAFA;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
 }
 
 /* #fe933e */
@@ -49,7 +46,8 @@
 } */
 
 body {
-  font-family: 'Syntha';
+	margin: 0;
+	padding: 0;
 	background-image: 
 	linear-gradient(to bottom, #7B12B5, #D91197, #a14900),
 	url('/images/back.png');

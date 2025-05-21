@@ -7,7 +7,7 @@ module.exports = {
   theme: {
 		extend: {
       fontFamily: {
-        synth: ['Syntha', 'sans-serif'],
+        synth: ['syntha', 'sans-serif'],
       },
     },
 	},

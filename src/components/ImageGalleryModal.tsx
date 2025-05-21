@@ -58,7 +58,7 @@ export default function ImageGalleryModal({
 
   return (
     <div
-      className="fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center touch-pinch-zoom"
+      className="fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center"
       onClick={onClose}
     >
       <div onClick={e => e.stopPropagation()} className="max-w-4xl w-full p-4">
