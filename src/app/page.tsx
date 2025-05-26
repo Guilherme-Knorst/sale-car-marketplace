@@ -34,7 +34,7 @@ export default async function HomePage({
 
   return (
     <div className="flex flex-col gap-6 justify-between items-center h-screen">
-      <main className="mt-6 w-[90%] xl:w-[70%] 2xl:w-[50%]">
+      <main className="mt-6 w-[90%] xl:w-[100%] 2xl:w-[60%]">
         <h1 className="text-base font-extrabold text-secondary mb-6 bg-senary p-4 rounded-lg font-syntha">
           Carros disponíveis
         </h1>
