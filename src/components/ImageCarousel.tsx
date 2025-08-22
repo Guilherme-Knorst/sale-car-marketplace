@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useKeenSlider } from 'keen-slider/react';
 import Image from 'next/image';
 import ImageGalleryModal from './ImageGalleryModal';
+import Car from '@/models/Car';
 
 // ⚠️ Importe este CSS como global (em pages/_app.tsx ou app/layout.tsx).
 // import 'keen-slider/keen-slider.min.css';
@@ -11,13 +12,14 @@ import ImageGalleryModal from './ImageGalleryModal';
 interface ImageCarouselProps {
   images: string[];
   noModal?: boolean;
+	sold?: boolean;
 }
 
 // pixel base64 (placeholder simples)
 const BLUR =
   'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGNgYAAAAAMAASsJTYQAAAAASUVORK5CYII=';
 
-export default function ImageCarousel({ images, noModal }: ImageCarouselProps) {
+export default function ImageCarousel({ images, noModal, sold }: ImageCarouselProps) {
 
 	const [currentSlide, setCurrentSlide] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -99,6 +101,25 @@ export default function ImageCarousel({ images, noModal }: ImageCarouselProps) {
           loaded ? 'opacity-100' : 'opacity-0'
         }`}
       >
+
+				{/* Faixa diagonal "Vendido" */}
+				{sold && <div aria-hidden className="pointer-events-none absolute left-0 top-0 z-30">
+					<div className="relative w-70 h-70 overflow-hidden">
+						<span
+							className="
+								absolute top-14 -left-12 rotate-[-45deg]
+								flex h-9 w-60 items-center justify-center
+								bg-secondary text-white text-[20px] lg:text-xs
+								font-semibold tracking-widest uppercase
+								leading-none whitespace-nowrap shadow-md
+							"
+						>
+							Vendido
+						</span>
+					</div>
+				</div>}
+				
+
         {images.map((src, idx) => (
           <div key={idx} className="keen-slider__slide">
             {/* Wrapper fixa o espaço com aspect ratio antes da imagem carregar */}

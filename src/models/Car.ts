@@ -13,6 +13,7 @@ export interface ICar extends Document {
 	color: string;
   year: number;
   price: number;
+	sold: boolean;
   mileage: number;
   description: IDescription[];
   images: string[];
@@ -31,6 +32,7 @@ const CarSchema: Schema = new Schema(
     carModel: { type: String, required: true },
     year: { type: Number, required: true },
     price: { type: Number, required: true },
+		sold: {type: Boolean, default: false },		
     mileage: { type: Number, required: true },
 		engine: { type: String, required: true },
 		color: { type: String, required: true },

@@ -22,7 +22,7 @@ export default async function CarDetailPage({params}: {params: Promise<{ id: str
     <div className="flex flex-col gap-5 lg:w-[60%] m-auto">
 
 			<div className='lg:w-[50%] lg:m-auto lg:mt-5'>
-				<ImageCarousel images={images} />
+				<ImageCarousel images={images} sold={car.sold}/>
 			</div>
 
 			<div className="top-25 flex flex-col lg:flex-row lg:justify-center items-center lg:gap-3 p-3 lg:p-4 place-self-center bg-white/95 rounded lg:w-[80%]">
@@ -36,10 +36,10 @@ export default async function CarDetailPage({params}: {params: Promise<{ id: str
 					{car.color}
 				</p>
 				<p className="text-2xl mt-5 lg:mt-0 text-green-600 font-semibold">
-					R$ {car.price.toLocaleString('pt-BR')}
+					{car.sold ? 'Vendido' : 'R$ ' + car.price.toLocaleString('pt-BR')}
 				</p>
 
-				<WhatsappButton text={`Gostaria de mais informacoes sobre o carro ${car.brand + ' ' + car.carModel}`}/>
+				{!car.sold && <WhatsappButton text={`Gostaria de mais informacoes sobre o carro ${car.brand + ' ' + car.carModel}`}/>}
 			</div>
 
 			<Link href="/" target='_blank' className="w-30 bg-white rounded text-center ml-3 lg:ml-38" rel="noopener noreferrer">Ver outros</Link>
@@ -91,7 +91,6 @@ export default async function CarDetailPage({params}: {params: Promise<{ id: str
 					<div key={index} className="flex flex-col gap-5 lg:w-[60%] lg:m-auto lg:mt-5">
 						<h2 className="text-2xl lg:text-4xl font-bold">{desc.title}</h2>
 						<p className="text-lg lg:text-xl">{desc.text}</p>
-						{/* <ImageCarousel images={car.images} /> */}
 					</div>
 				))}
 				<div className="flex flex-col gap-5 lg:w-[60%] lg:m-auto lg:mt-5">
@@ -115,10 +114,10 @@ export default async function CarDetailPage({params}: {params: Promise<{ id: str
 						{car.color}
 					</p>
 					<p className="text-2xl mt-5 lg:mt-0 text-green-600 font-semibold">
-						R$ {car.price.toLocaleString('pt-BR')}
+						{car.sold ? 'Vendido' : 'R$ ' + car.price.toLocaleString('pt-BR')}
 					</p>
 
-					<WhatsappButton text={`Gostaria de mais informacoes sobre o carro ${car.brand + ' ' + car.carModel}`}/>
+					{!car.sold && <WhatsappButton text={`Gostaria de mais informacoes sobre o carro ${car.brand + ' ' + car.carModel}`}/>}
 				</div>
 
       </div>
