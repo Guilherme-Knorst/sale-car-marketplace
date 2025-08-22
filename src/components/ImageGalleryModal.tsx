@@ -64,14 +64,15 @@ export default function ImageGalleryModal({
       <div onClick={e => e.stopPropagation()} className="max-w-4xl w-full p-4">
         <div ref={sliderRef} className="keen-slider">
           {images.map((src, idx) => (
-            <div key={idx} className="keen-slider__slide flex justify-center">
+            <div key={idx} className="keen-slider__slide flex justify-center aspect-[1/1]">
               <Image
                 src={src}
                 alt={`img-${idx}`}
-                width={800}
-                height={600}
+                fill
+								priority={idx === 0}
+                loading={idx === 0 ? 'eager' : 'lazy'}
 								onClick={() => setZoomed(!zoomed)}
-								className={`rounded object-contain max-h-[80vh] transition-transform duration-300 ${
+								className={`rounded object-contain transition-transform duration-300 ${
 									zoomed ? 'scale-150 cursor-zoom-out' : 'scale-100 cursor-zoom-in'
 								}`}
               />

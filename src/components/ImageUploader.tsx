@@ -6,9 +6,11 @@ import { useRef } from 'react';
 export default function ImageUploader({
   files,
   setFiles,
+	title = 'Upload de Imagens',
 }: {
   files: File[];
   setFiles: (files: File[]) => void;
+	title: string;
 }) {
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -25,9 +27,11 @@ export default function ImageUploader({
 
   return (
     <div className="space-y-2">
+			<label className="block text-sm font-medium text-gray-700">{title}</label>
       <input
         type="file"
         accept="image/*"
+				className="border border-gray-300 px-3 py-2 rounded w-full"
         multiple
         ref={inputRef}
         onChange={handleSelect}

@@ -3,11 +3,13 @@ import Car, { ICar } from '@/models/Car';
 import Footer from '@/components/Footer';
 import Filters from '@/components/Filters';
 import CarCard from '@/components/CarCard';
+import { redirect } from 'next/navigation';
 
 interface SearchParams {
   brand?: string;
   price_min?: string;
   price_max?: string;
+	key?: string;
 }
 
 export default async function HomePage({
@@ -19,7 +21,11 @@ export default async function HomePage({
 
   const query: Record<string, any> = { active: true };
 
-  const { brand, price_min = 0, price_max = 9999999999 } = await searchParams;
+  const { brand, price_min = 0, price_max = 9999999999, key } = await searchParams;
+
+	if(key) {
+		redirect(`/cars/${key}`);
+	}
 
 	if (brand) {
 		query.brand = { $regex: new RegExp(brand, 'i') };
@@ -34,7 +40,7 @@ export default async function HomePage({
 
   return (
     <div className="flex flex-col gap-6 justify-between items-center h-screen">
-      <main className="mt-6 w-[90%] xl:w-[100%] 2xl:w-[60%]">
+      <main className="mt-6 w-[90%] sm:w-[80%] 2xl:w-[60%]">
         <h1 className="text-base font-extrabold text-secondary mb-6 bg-senary p-4 rounded-lg font-syntha">
           Carros disponíveis
         </h1>
