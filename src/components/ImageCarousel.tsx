@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import { useKeenSlider } from 'keen-slider/react';
 import Image from 'next/image';
 import ImageGalleryModal from './ImageGalleryModal';
-import Car from '@/models/Car';
 
 // ⚠️ Importe este CSS como global (em pages/_app.tsx ou app/layout.tsx).
 // import 'keen-slider/keen-slider.min.css';

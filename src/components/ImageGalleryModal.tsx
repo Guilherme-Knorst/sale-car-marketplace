@@ -63,7 +63,7 @@ export default function ImageGalleryModal({
     >
       <div onClick={e => e.stopPropagation()} className="max-w-4xl w-full p-4">
         <div ref={sliderRef} className="keen-slider">
-          {images.map((src, idx) => (
+          {/* {images.map((src, idx) => (
             <div key={idx} className="keen-slider__slide flex justify-center aspect-[1/1]">
               <Image
                 src={src}
@@ -77,7 +77,30 @@ export default function ImageGalleryModal({
 								}`}
               />
             </div>
-          ))}
+          ))} */}
+
+					{images.map((src, idx) => (
+						<div key={idx} className="keen-slider__slide">
+							{/* Wrapper fixa o espaço com aspect ratio antes da imagem carregar */}
+							<div className="relative w-full m-auto aspect-[1/1] rounded-lg overflow-hidden">
+								<Image
+									src={src}
+									alt={`Imagem ${idx + 1}`}
+									fill
+									// só a primeira com prioridade/eager
+									priority={idx === 0}
+									loading={idx === 0 ? 'eager' : 'lazy'}
+									// responsivo: ajuste conforme seus breakpoints
+									quality={70}
+									// placeholder="blur"
+									// blurDataURL={BLUR}
+									className="object-cover cursor-pointer"
+								/>
+								{/* skeleton leve até onLoad (opcional): */}
+								{/* Pode remover se o blur já for suficiente */}
+							</div>
+						</div>
+					))}
         </div>
 
         <div className="text-white text-center mt-2">
