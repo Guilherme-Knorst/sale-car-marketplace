@@ -6,7 +6,7 @@ export default function WhatsappButton({text }: { text: string }) {
 	const urlEncodedText = encodeURIComponent(text);
 	
 	const callZap = () => {
-		window.open(`https://wa.me/5551995831736?text=${urlEncodedText}`, '_blank');
+		window.open(`https://wa.me/5551989421200?text=${urlEncodedText}`, '_blank');
 	};
 	
 	return (

@@ -62,7 +62,7 @@ export default function ImageCarousel({ images, noModal }: ImageCarouselProps) {
   }, [isModalOpen]);
 
   return (
-    <div className="relative group lg:w-[50%] lg:m-auto lg:mt-5">
+    <div className="relative group">
 			<button
 				onClick={(e) => {
 					e.stopPropagation();

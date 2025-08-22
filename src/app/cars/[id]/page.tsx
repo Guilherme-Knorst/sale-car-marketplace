@@ -19,16 +19,21 @@ export default async function CarDetailPage({params}: {params: Promise<{ id: str
 	const images = [car.mainImage, ...car.images]
 
   return (
-    <div className="flex flex-col gap-5 lg:w-[60%] w-[90%] m-auto">
+    <div className="flex flex-col gap-5 lg:w-[60%] m-auto">
 
-			<ImageCarousel images={images} />
+			<div className='lg:w-[50%] lg:m-auto lg:mt-5'>
+				<ImageCarousel images={images} />
+			</div>
 
-			<div className="top-25 flex flex-col lg:flex-row items-center lg:gap-5 p-3 lg:p-5 place-self-center bg-white/95 rounded">
+			<div className="top-25 flex flex-col lg:flex-row lg:justify-center items-center lg:gap-3 p-3 lg:p-4 place-self-center bg-white/95 rounded lg:w-[80%]">
 				<p className="text-lg lg:text-xl font-bold">
-					{car.year} {car.brand} {car.carModel}
+					{car.brand} {car.carModel} {car.year}
 				</p>
 				<p className="text-lg lg:text-xl text-gray-600">
 					{car.engine} - {car.fuel} - {car.mileage.toLocaleString('pt-BR')} km
+				</p>
+				<p className="text-lg lg:text-xl text-gray-600">
+					{car.color}
 				</p>
 				<p className="text-2xl mt-5 lg:mt-0 text-green-600 font-semibold">
 					R$ {car.price.toLocaleString('pt-BR')}
@@ -37,7 +42,7 @@ export default async function CarDetailPage({params}: {params: Promise<{ id: str
 				<WhatsappButton text={`Gostaria de mais informacoes sobre o carro ${car.brand + ' ' + car.carModel}`}/>
 			</div>
 
-			 <Link href="/" target='_blank' className="w-30 bg-white rounded text-center" rel="noopener noreferrer">Ver outros</Link>
+			<Link href="/" target='_blank' className="w-30 bg-white rounded text-center ml-3 lg:ml-38" rel="noopener noreferrer">Ver outros</Link>
 
 			{/* <section className="w-[95%] mx-auto mt-10 bg-white/95 rounded-xl shadow-lg overflow-hidden">
 				<h2 className="text-2xl font-bold text-primary px-6 pt-6 pb-4 font-syntha border-b border-primary">
@@ -81,28 +86,33 @@ export default async function CarDetailPage({params}: {params: Promise<{ id: str
 
 
 			
-      <div className="flex flex-col gap-15 p-10 bg-white/95 rounded">
+      <div className="flex flex-col gap-15 p-5 lg:p-10 bg-white/95 rounded lg:w-[80%] w-[95%] m-auto">
 				{car.description.map((desc, index) => (
-					<div key={index} className="flex flex-col gap-5">
+					<div key={index} className="flex flex-col gap-5 lg:w-[60%] lg:m-auto lg:mt-5">
 						<h2 className="text-2xl lg:text-4xl font-bold">{desc.title}</h2>
 						<p className="text-lg lg:text-xl">{desc.text}</p>
 						{/* <ImageCarousel images={car.images} /> */}
 					</div>
 				))}
-				<div className="flex flex-col gap-5">
+				<div className="flex flex-col gap-5 lg:w-[60%] lg:m-auto lg:mt-5">
 					<h2 className="text-2xl lg:text-4xl font-bold">Interior</h2>
 					<ImageCarousel images={car.interiorImages} />
 				</div>
-				<div className="flex flex-col gap-5">
+				<div className="flex flex-col gap-5 lg:w-[60%] lg:m-auto lg:mt-5">
 					<h2 className="text-2xl lg:text-4xl font-bold">Exterior</h2>
 					<ImageCarousel images={car.exteriorImages} />
 				</div>
-				<div className="flex flex-col lg:flex-row items-center lg:gap-5 p-3 lg:p-5 place-self-center bg-white/95 rounded">
+
+
+				<div className="top-25 flex flex-col lg:flex-row items-center lg:gap-5 p-3 lg:p-5 place-self-center bg-white/95 rounded">
 					<p className="text-lg lg:text-xl font-bold">
-						{car.year} {car.brand} {car.carModel}
+						{car.brand} {car.carModel} {car.year}
 					</p>
 					<p className="text-lg lg:text-xl text-gray-600">
 						{car.engine} - {car.fuel} - {car.mileage.toLocaleString('pt-BR')} km
+					</p>
+					<p className="text-lg lg:text-xl text-gray-600">
+						{car.color}
 					</p>
 					<p className="text-2xl mt-5 lg:mt-0 text-green-600 font-semibold">
 						R$ {car.price.toLocaleString('pt-BR')}
@@ -110,6 +120,7 @@ export default async function CarDetailPage({params}: {params: Promise<{ id: str
 
 					<WhatsappButton text={`Gostaria de mais informacoes sobre o carro ${car.brand + ' ' + car.carModel}`}/>
 				</div>
+
       </div>
     </div>
   );

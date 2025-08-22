@@ -4,8 +4,8 @@ import "./globals.css";
 import Header from "@/components/Header";
 
 export const metadata: Metadata = {
-  title: "Sale Projetos - Carros clássicos",
-  description: "Carros clássicos à venda",
+  title: "Sale Projetos - Carros antigos",
+  description: "Carros antigos à venda",
 };
 
 export default function RootLayout({
@@ -14,7 +14,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="pt-BR">
       <body>
 				<Header />
         {children}
