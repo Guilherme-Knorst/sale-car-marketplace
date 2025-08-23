@@ -14,6 +14,9 @@ export default function Header() {
 							priority
 						/>
 					</Link>
+					<Link href="/" className="hover:underline">
+						<p className="font-bold text-lg bg-primary pl-5 pr-5 rounded">Pagina inicial</p>
+					</Link>
         </nav>
     </header>
   );

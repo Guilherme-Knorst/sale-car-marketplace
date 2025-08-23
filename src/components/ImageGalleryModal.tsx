@@ -19,7 +19,6 @@ export default function ImageGalleryModal({
   onClose,
 }: ImageGalleryModalProps) {
   const [current, setCurrent] = useState(startIndex);
-	const [zoomed, setZoomed] = useState(false);
 
   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
     initial: startIndex,

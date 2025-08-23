@@ -42,7 +42,7 @@ export default async function CarDetailPage({params}: {params: Promise<{ id: str
 				{!car.sold && <WhatsappButton text={`Gostaria de mais informacoes sobre o carro ${car.brand + ' ' + car.carModel}`}/>}
 			</div>
 
-			<Link href="/" target='_blank' className="w-30 bg-white rounded text-center ml-3 lg:ml-38" rel="noopener noreferrer">Ver outros</Link>
+			<Link href="/" target='_blank' className="w-50 bg-white rounded text-center m-auto p-3 font-bold" rel="noopener noreferrer">Ver outros carros</Link>
 
 			{/* <section className="w-[95%] mx-auto mt-10 bg-white/95 rounded-xl shadow-lg overflow-hidden">
 				<h2 className="text-2xl font-bold text-primary px-6 pt-6 pb-4 font-syntha border-b border-primary">
@@ -86,7 +86,7 @@ export default async function CarDetailPage({params}: {params: Promise<{ id: str
 
 
 			
-      <div className="flex flex-col gap-15 p-5 lg:p-10 bg-white/95 rounded lg:w-[80%] w-[95%] m-auto">
+      <div className="flex flex-col gap-10 p-5 lg:p-10 bg-white/95 rounded lg:w-[80%] w-[95%] m-auto">
 				{car.description.map((desc, index) => (
 					<div key={index} className="flex flex-col gap-5 lg:w-[60%] lg:m-auto lg:mt-5">
 						<h2 className="text-2xl lg:text-4xl font-bold">{desc.title}</h2>
@@ -100,10 +100,11 @@ export default async function CarDetailPage({params}: {params: Promise<{ id: str
 				<div className="flex flex-col gap-5 lg:w-[60%] lg:m-auto lg:mt-5">
 					<h2 className="text-2xl lg:text-4xl font-bold">Exterior</h2>
 					<ImageCarousel images={car.exteriorImages} />
+					<Link href="/" target='_blank' className="w-50 bg-white rounded text-center m-auto p-3 font-bold" rel="noopener noreferrer">Ver outros carros</Link>
 				</div>
 
 
-				<div className="top-25 flex flex-col lg:flex-row items-center lg:gap-5 p-3 lg:p-5 place-self-center bg-white/95 rounded">
+				<div className="flex flex-col lg:flex-row items-center lg:gap-5 p-3 lg:p-5 place-self-center bg-white/95 rounded">
 					<p className="text-lg lg:text-xl font-bold">
 						{car.brand} {car.carModel} {car.year}
 					</p>
