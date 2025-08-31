@@ -16,13 +16,14 @@ export const revalidate = 300; // revalida a cada 5 minutos segundos
 
 
 interface Props {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 // 🔹 Gera meta tags dinâmicas para cada carro
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   await connectToDatabase();
-  const car: ICar | null = await Car.findById<ICar>(params.id);
+	const { id } = await params;
+  const car: ICar | null = await Car.findById<ICar>(id);
 
   if (!car) {
     return {
@@ -51,7 +52,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 
-export default async function CarDetailPage({params}: {params: Promise<{ id: string }>}) {
+export default async function CarDetailPage({ params }: {params: Promise<{ id: string }>}) {
   await connectToDatabase();
 
 	const { id } = await params;
